@@ -21,7 +21,15 @@ sexo = st.selectbox("Sexo", options=[("Hombre", 1), ("Mujer", 0)], format_func=l
 presion_arterial = st.number_input("Presión arterial sistólica (ap_hi)", min_value=50, max_value=200, value=120)
 colesterol_alto = st.checkbox("Colesterol alto")
 glucosa_alta = st.checkbox("Glucosa alta")
-bmi = st.number_input("Índice de Masa Corporal (BMI)", min_value=15.0, value=40.0)
+peso = st.number_input("Peso (kg)", min_value=30, value=75)
+altura = st.number_input("Altura (m)", min_value=0.5, value=1.7)
+#bmi = st.number_input("Índice de Masa Corporal (BMI)", min_value=15.0, value=40.0)
+bmi = peso / (altura ** 2)
+
+if bmi < 15:
+    st.warning("Peso demasiado bajo para el modelo")
+elif bmi >= 40:
+    st.warning("Peso demasiado alto para el modelo")
 
 # Convertir las opciones booleanas a 1 o 0
 colesterol = 1 if colesterol_alto else 0
